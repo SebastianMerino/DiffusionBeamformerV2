@@ -32,8 +32,8 @@ def main():
 
     # Loading Data
     input_folder = data_folder/'input_id'
-    output_folder = data_folder/'target_enh'
-    dataset = CustomDataset(input_folder, output_folder, transform=True)
+    output_folder = data_folder/'target_from_raw'
+    dataset = CustomDataset(input_folder, output_folder, transform=True, discard=True)
     print(f'Dataset length: {len(dataset)}')
     train_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     print(f'Dataloader length: {len(train_loader)}')
