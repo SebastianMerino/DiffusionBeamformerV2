@@ -34,16 +34,17 @@ def main():
     model13A.eval()
 
     BATCH_SIZE = 16
-    dataloader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=False, drop_last=True)
+    dataloader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=False, drop_last=False)
     batch_number = 0
     for x, y in dataloader:  # x: images
-        x = x.to(device)
-        y_gen = diffusion.p_sample_loop(model13A, y.shape, x, progress=False, clip_denoised=True)
-        print(f'Saving batch {batch_number:03d}, {datetime.now()}')
-        for id, sample in enumerate(y_gen):
-            name = (data.input_file_list[batch_number * BATCH_SIZE + id])
-            np.save(gen_folder / name, sample.cpu().detach().numpy())
-        batch_number += 1
+        if batch_number > 155: # quick fix
+            x = x.to(device)
+            y_gen = diffusion.p_sample_loop(model13A, y.shape, x, progress=False, clip_denoised=True)
+            print(f'Saving batch {batch_number:03d}, {datetime.now()}')
+            for id, sample in enumerate(y_gen):
+                name = (data.input_file_list[batch_number * BATCH_SIZE + id])
+                np.save(gen_folder / name, sample.cpu().detach().numpy())
+            batch_number += 1
 
 
 def get_args():
