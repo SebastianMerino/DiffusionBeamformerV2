@@ -25,7 +25,7 @@ def main():
     gen_folder.mkdir(parents=True, exist_ok=True)
     save_dir = Path(os.getcwd()) / 'weights'
 
-    data = CustomDataset(input_folder, output_folder, transform=True)
+    data = CustomDataset(input_folder, output_folder, transform=True, group_norm=False) # retrained without group_norm
     device = torch.device("cuda:0" if torch.cuda.is_available() else torch.device('cpu'))
 
     diffusion = create_gaussian_diffusion()
