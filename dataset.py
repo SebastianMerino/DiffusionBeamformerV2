@@ -1,7 +1,6 @@
 import os
 import torch
 import numpy as np
-import pandas as pd
 from torchvision import transforms
 from torch.utils.data import Dataset
 
@@ -15,6 +14,7 @@ class CustomDataset(Dataset):
         self.input_file_list = sorted(os.listdir(input_folder))
         self.output_file_list = sorted(os.listdir(output_folder))
         if discard:
+            import pandas as pd
             new_file_list = []
             df = pd.read_csv('testing_params.csv')
             testing_files = df['id'].tolist()
