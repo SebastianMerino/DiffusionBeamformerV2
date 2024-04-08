@@ -30,7 +30,7 @@ def main():
 
     diffusion = create_gaussian_diffusion()
     model13A = UNETv13(residual=False, attention_res=[]).to(device)
-    model13A.load_state_dict(torch.load(f"{save_dir}\\model_{n_epoch}.pth", map_location=device))
+    model13A.load_state_dict(torch.load(save_dir/f"model_{n_epoch}.pth", map_location=device))
     model13A.eval()
 
     BATCH_SIZE = 16
