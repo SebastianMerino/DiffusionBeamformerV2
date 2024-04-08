@@ -21,7 +21,7 @@ def main():
     # Managing folders
     input_folder = data_folder / 'input_testing'
     output_folder = data_folder / 'target_testing'
-    gen_folder = data_folder / 'generated_diffusion'
+    gen_folder = data_folder / 'generated_diffusion_v2'
     gen_folder.mkdir(parents=True, exist_ok=True)
     save_dir = Path(os.getcwd()) / 'weights'
 
