@@ -21,15 +21,15 @@ def main():
     # Managing folders
     input_folder = data_folder / 'input_testing'
     output_folder = data_folder / 'target_testing'
-    gen_folder = data_folder / 'generated_diffusion_v2'
+    gen_folder = data_folder / 'generated_diffusion_GN'
     gen_folder.mkdir(parents=True, exist_ok=True)
-    save_dir = Path(os.getcwd()) / 'weights'
+    save_dir = Path(os.getcwd()) / 'weightsGN'
 
     data = CustomDataset(input_folder, output_folder, transform=True) # retrained without group_norm
     device = torch.device("cuda:0" if torch.cuda.is_available() else torch.device('cpu'))
 
     diffusion = create_gaussian_diffusion()
-    model13A = UNETv13(residual=False, attention_res=[], group_norm=False).to(device)
+    model13A = UNETv13(residual=False, attention_res=[], group_norm=True).to(device)
     model13A.load_state_dict(torch.load(save_dir/f"model_{n_epoch}.pth", map_location=device))
     model13A.eval()
 
