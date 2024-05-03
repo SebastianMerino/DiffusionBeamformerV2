@@ -13,7 +13,7 @@ def show_tensor_image(image):
     # Take first image of batch
     if len(image.shape) == 4:
         image = image[0, :, :, :]
-    plt.imshow(reverse_transforms(image), cmap='gray', extent=[-20,20,50,0])
+    plt.imshow(reverse_transforms(image), cmap='gray', extent=[-19.05, 19.05, 80.0, 30.0])
     plt.clim(-60,0)
 
 def show_reverse_process(intermediate):
