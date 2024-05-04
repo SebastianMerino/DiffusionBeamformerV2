@@ -1,4 +1,5 @@
 import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "backend:cudaMallocAsync"
 import torch
 import argparse
 from pathlib import Path
@@ -14,7 +15,7 @@ from model import UNETv13
 def main():
     # network hyperparameters
     device = torch.device("cuda:0" if torch.cuda.is_available() else torch.device('cpu'))
-    save_dir = Path(os.getcwd())/'weightsBN'
+    save_dir = Path(os.getcwd())/'weightsGN'
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)
 
@@ -51,7 +52,7 @@ def main():
     )
     
     # Model and optimizer
-    nn_model = UNETv13(residual=False, attention_res=[], group_norm=False).to(device)
+    nn_model = UNETv13(residual=False, attention_res=[], group_norm=True).to(device)
     print("Num params: ", sum(p.numel() for p in nn_model.parameters() if p.requires_grad))
 
     optim = torch.optim.Adam(nn_model.parameters(), lr=l_rate)

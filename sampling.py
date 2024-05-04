@@ -23,7 +23,7 @@ def main():
     output_folder = data_folder / 'target_testing'
     gen_folder = data_folder / 'generated_diffusion_BN'
     gen_folder.mkdir(parents=True, exist_ok=True)
-    save_dir = Path(os.getcwd()) / 'weights'
+    save_dir = Path(os.getcwd()) / 'weightsBN'
 
     data = CustomDataset(input_folder, output_folder, transform=True) # retrained without group_norm
     device = torch.device("cuda:0" if torch.cuda.is_available() else torch.device('cpu'))
