@@ -24,7 +24,7 @@ def show_reverse_process(intermediate):
     for id, y_gen in enumerate(intermediate):
         plt.subplot(1, num_intermediate, id+1)
         show_tensor_image(y_gen)
-    plt.show()
+    # plt.show()
 
 def plot_sample(input_us, output_us):
     """ Plots IQ data and beamformed enhanced data """
